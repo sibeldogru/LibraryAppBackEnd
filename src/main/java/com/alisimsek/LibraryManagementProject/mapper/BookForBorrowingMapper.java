@@ -4,7 +4,7 @@ import com.alisimsek.LibraryManagementProject.dto.request.BookForBorrowingReques
 import com.alisimsek.LibraryManagementProject.entity.Book;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface BookForBorrowingMapper {
 
     Book asEntity(BookForBorrowingRequest bookForBorrowingRequest);

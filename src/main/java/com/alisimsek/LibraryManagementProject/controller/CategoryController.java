@@ -1,6 +1,6 @@
 package com.alisimsek.LibraryManagementProject.controller;
 
-
+import com.alisimsek.LibraryManagementProject.dto.request.CategoryUpdateRequest;
 import com.alisimsek.LibraryManagementProject.entity.Category;
 import com.alisimsek.LibraryManagementProject.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
-    @GetMapping()
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Category> findAll() {
         return categoryService.findAll();
@@ -24,11 +24,11 @@ public class CategoryController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Category getById(@PathVariable("id") Long id) {
+    public Category getById(@PathVariable Long id) {
         return categoryService.getById(id);
     }
 
-    @PostMapping()
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Category save(@RequestBody Category category) {
         return categoryService.create(category);
@@ -36,16 +36,15 @@ public class CategoryController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Category update(@PathVariable Long id, @RequestBody Category newCategory) {
-        return categoryService.update(id, newCategory);
+    public Category update(
+            @PathVariable Long id,
+            @RequestBody CategoryUpdateRequest request) {
+        return categoryService.update(id, request);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public String delete(@PathVariable("id") Long id) {
+    public String delete(@PathVariable Long id) {
         return categoryService.deleteById(id);
     }
-
-
 }
-
