@@ -1,6 +1,5 @@
 package com.alisimsek.LibraryManagementProject.service;
 
-
 import com.alisimsek.LibraryManagementProject.dto.request.BookBorrowingRequest;
 import com.alisimsek.LibraryManagementProject.dto.request.BookBorrowingUpdateRequest;
 import com.alisimsek.LibraryManagementProject.entity.Book;
@@ -27,9 +26,9 @@ public class BookBorrowingService {
     }
 
     public BookBorrowing getById(Long id) {
-        return bookBorrowingRepository.findById(id).orElseThrow(() -> new RuntimeException(id + "id li Ödünç Alımı Bulunamadı !!!"));
+        return bookBorrowingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException(id + "id li Ödünç Alımı Bulunamadı !!!"));
     }
-
 
     public BookBorrowing create(BookBorrowingRequest bookBorrowingRequest) {
 
@@ -46,6 +45,7 @@ public class BookBorrowingService {
         bookBorrowing.setBorrowerName(bookBorrowingRequest.getBorrowerName());
         bookBorrowing.setBorrowerMail(bookBorrowingRequest.getBorrowerMail());
         bookBorrowing.setBorrowingDate(bookBorrowingRequest.getBorrowingDate());
+        bookBorrowing.setReturnDate(bookBorrowingRequest.getReturnDate());
         bookBorrowing.setBook(bookUpdated);
         return this.bookBorrowingRepository.save(bookBorrowing);
     }
@@ -60,7 +60,7 @@ public class BookBorrowingService {
             throw new RuntimeException(id + "Güncellemeye çalıştığınız ödünç alım sistemde bulunamadı!!!.");
         }
 
-        if (bookBorrowingUpdateRequest.getReturnDate() != null && returnDateFromDb == null)  {
+        if (bookBorrowingUpdateRequest.getReturnDate() != null && returnDateFromDb == null) {
             System.out.println("ifffffffff");
             Book book = bookBorrowingFromDb.get().getBook();
             book.setStock(book.getStock() + 1);
@@ -89,6 +89,5 @@ public class BookBorrowingService {
             throw new RuntimeException(id + "id li Ödünç Alımı sistemde bulunamadı !!!");
         }
     }
-
 
 }

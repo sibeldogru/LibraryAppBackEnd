@@ -16,5 +16,6 @@ public class BookBorrowingRequest {
     private String borrowerName;
     private String borrowerMail;
     private LocalDate borrowingDate;
+    private LocalDate returnDate;
     private BookForBorrowingRequest bookForBorrowingRequest;
 }
