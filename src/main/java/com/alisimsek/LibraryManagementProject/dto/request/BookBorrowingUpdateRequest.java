@@ -14,6 +14,7 @@ import java.time.LocalDate;
 public class BookBorrowingUpdateRequest {
 
     private String borrowerName;
+    private String borrowerMail;
     private LocalDate borrowingDate;
     private LocalDate returnDate;
 
